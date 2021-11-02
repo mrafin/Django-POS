@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-12">
+
+    <h3>Tag </h3><a href="{% url 'tambah_kategori' %}">tambah</a>
+     <table class="table table-bordered table-striped">
+         
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Keterangan</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for kategori in kategoris %}
+            <tr>
+                
+                <td>{{kategori.nama}}</td>
+                <td>{{kategori.keterangan}}</td>
+                <td><a href="{%url 'ubah_kategori' kategori.id %}" class='btn btn-success'>ubah</a>
+                    <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">hapus</button> -->
+                    <a href="{% url 'hapus_kategori' kategori.id %}" class='btn btn-danger'>hapus</a>
+                </td>
+
+                <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Tag</h5>
+                            </div>
+                            <div class="modal-body">
+                                Anda yakin menghapus kategori {{kategori.nama}} ??
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
+                                <a href="{% url 'hapus_kategori' kategori.id %}" class='btn btn-danger'>hapus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+         
+
+     </table>
+</div>
+
+
+{% endblock %}
+

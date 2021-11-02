@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-12">
+
+    <h3>Tag </h3><a href="{% url 'tambah_produk' %}">tambah</a>
+     <table class="table table-bordered table-striped">
+         
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+                <th>Kategori</th>
+                <th>Harga Beli</th>
+                <th>Harga Jual</th>
+                <th>Harga Promo</th>
+                <th>Tag</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for produk in produks %}
+            <tr>
+                
+                <td>{{produk.nama}}</td>
+                <td>{{produk.jumlah}}</td>
+                <td>{{produk.keterangan}}</td>
+                <td>{{produk.kategori}}</td>
+                <td>{{produk.harga_beli}}</td>
+                <td>{{produk.harga_jual}}</td>
+                <td>{{produk.harga_promo}}</td>
+                <td>
+                    {% for tag in produk.tag.all %}
+                        - {{tag}} <br>
+                    {% endfor %}
+
+                </td>
+                
+
+
+                <td><a href="{%url 'ubah_produk' produk.id %}" class='btn btn-success'>ubah</a>
+                    <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">hapus</button> -->
+                    <a href="{% url 'hapus_produk' produk.id %}" class='btn btn-danger'>hapus</a>
+                    <a href="{% url 'beli_produk' produk.id %}" class='btn btn-danger'>beli</a>
+                </td>
+
+                <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Tag</h5>
+                            </div>
+                            <div class="modal-body">
+                                Anda yakin menghapus produk {{produk.nama}} ??
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
+                                <a href="{% url 'hapus_produk' produk.id %}" class='btn btn-danger'>hapus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+         
+
+     </table>
+</div>
+
+
+{% endblock %}
+

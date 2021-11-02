@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <form action="{%url 'ubah_kategori' kategori.id %}" method="post">
+        {% csrf_token %}
+        {% for messages in messages %}
+        {% if messages %}
+            <div class="alert aler-success">{{messages}}</div>
+        {%endif%}
+        {%endfor%}
+
+        {{form.as_p}}
+        <a href="{% url 'kategori' %}"class='btn btn-danger'>kembali</a>
+        <button class='btn btn-primary'>kirim</button>
+    </form>
+
+</div>
+
+{% endblock %}
